@@ -14,8 +14,12 @@ import {
   Menu, 
   X, 
   ExternalLink,
-  ChevronRight,
-  ChevronLeft
+  Download,
+  MessageSquare,
+  Search,
+  Layers,
+  PenTool,
+  Smartphone
 } from 'lucide-react';
 
 // Google Drive Image IDs provided by the user
@@ -37,17 +41,53 @@ const IMAGE_IDS = [
 
 const getImageUrl = (id: string) => `https://lh3.googleusercontent.com/d/${id}`;
 
-const PROJECTS = IMAGE_IDS.map((id, index) => ({
+const FEATURED_PROJECTS = [
+  {
+    id: IMAGE_IDS[0],
+    title: 'Rightware',
+    subtitle: 'Brand Identity',
+    description: 'Helped an emerging ecommerce brand build a recognizable visual identity that strengthened trust and customer loyalty.',
+    tags: ['Logo', 'Brand Colors', 'Packaging', 'Social Graphics'],
+    url: getImageUrl(IMAGE_IDS[0])
+  },
+  {
+    id: IMAGE_IDS[1],
+    title: 'Vectorise',
+    subtitle: 'Coaching Tech Startup',
+    description: 'Developed a dynamic visual system for a tech-driven coaching platform to stand out in a crowded market.',
+    tags: ['Visual System', 'UI Design', 'Typography'],
+    url: getImageUrl(IMAGE_IDS[1])
+  },
+  {
+    id: IMAGE_IDS[2],
+    title: 'Servifix',
+    subtitle: 'Product Branding',
+    description: 'Crafted a robust branding strategy for a service-oriented product, focusing on clarity and reliability.',
+    tags: ['Branding', 'Iconography', 'Marketing'],
+    url: getImageUrl(IMAGE_IDS[2])
+  }
+];
+
+const CATALOGUE = IMAGE_IDS.slice(3).map((id, index) => ({
   id,
-  title: `Project ${String(index + 1).padStart(2, '0')}`,
-  category: ['Branding', 'Editorial', 'Typography', 'Digital'][index % 4],
-  year: 2023 + (index % 3),
+  title: `Project ${String(index + 4).padStart(2, '0')}`,
+  category: ['Visual System', 'Editorial', 'Typography', 'Digital'][index % 4],
   url: getImageUrl(id)
 }));
 
+const CAPABILITIES = [
+  'Brand Identity', 'Logo Design', 'Visual Systems', 
+  'Social Media Graphics', 'Marketing Design', 'Presentation Design'
+];
+
+const TOOLS = [
+  'Canva', 'Figma', 'Illustrator', 'Coreldraw', 
+  'Photoshop', 'InDesign', 'Pixellab'
+];
+
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<typeof PROJECTS[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<any | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -57,33 +97,37 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white font-sans selection:bg-emerald-500 selection:text-black">
+    <div className="min-h-screen bg-[#0A0A0A] text-white font-sans selection:bg-blue-600 selection:text-white">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/80 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
+      <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/90 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-bold tracking-tighter flex items-center gap-2"
+            className="text-xl font-black tracking-tighter"
           >
-            <div className="w-8 h-8 bg-emerald-500 rounded-full" />
-            VANGUARD
+            EMMANUEL IDOWU.
           </motion.div>
           
-          <div className="hidden md:flex gap-12 text-sm font-medium tracking-widest uppercase opacity-70">
-            {['Work', 'About', 'Contact'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="hover:opacity-100 transition-opacity">
+          <div className="hidden md:flex gap-12 text-[10px] font-bold tracking-[0.3em] uppercase opacity-50">
+            {['Work', 'Approach', 'About', 'Contact'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="hover:opacity-100 transition-opacity hover:text-blue-500">
                 {item}
               </a>
             ))}
           </div>
 
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 hover:bg-white/10 rounded-full transition-colors"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center gap-4">
+            <a href="https://wa.me/+2348132531112" target="_blank" className="hidden md:flex text-[10px] font-bold tracking-widest uppercase bg-blue-600 px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all">
+              Start a Conversation
+            </a>
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 hover:bg-white/10 rounded-full transition-colors"
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -91,202 +135,294 @@ export default function App() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-8 text-4xl font-bold"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            className="fixed inset-0 z-40 bg-black flex flex-col items-center justify-center gap-8 text-3xl font-bold"
           >
-            {['Work', 'About', 'Contact'].map((item) => (
+            {['Work', 'Approach', 'About', 'Contact'].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`} 
                 onClick={() => setIsMenuOpen(false)}
-                className="hover:text-emerald-500 transition-colors"
+                className="hover:text-blue-500 transition-colors"
               >
                 {item}
               </a>
             ))}
+            <a href="https://wa.me/+2348132531112" className="text-sm bg-blue-600 px-8 py-4 rounded-full mt-8">
+              WhatsApp Me
+            </a>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden px-6">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 -left-20 w-96 h-96 bg-emerald-500/30 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-[120px]" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="inline-block text-xs font-bold tracking-[0.3em] uppercase mb-6 text-emerald-500">
-              Graphic Designer & Visual Artist
-            </span>
-            <h1 className="text-6xl md:text-[10vw] font-bold leading-[0.85] tracking-tighter uppercase mb-8">
-              Crafting <br />
-              <span className="text-transparent border-text">Digital</span> <br />
-              Visions
-            </h1>
-            <p className="max-w-xl mx-auto text-lg md:text-xl text-zinc-400 mb-10 leading-relaxed">
-              Specializing in bold brand identities and high-impact editorial design for the modern era.
-            </p>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-              <a href="#work" className="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-emerald-500 transition-all duration-300">
-                View Catalogue
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-              </a>
-              <a href="#contact" className="px-8 py-4 rounded-full border border-white/20 font-bold hover:bg-white/5 transition-colors">
-                Let's Talk
-              </a>
-            </div>
-          </motion.div>
-        </div>
-
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
-        >
-          <div className="w-px h-12 bg-gradient-to-b from-transparent to-white/50" />
-          <span className="text-[10px] uppercase tracking-[0.5em] font-bold">Scroll</span>
-        </motion.div>
-      </section>
-
-      {/* Work Gallery */}
-      <section id="work" className="py-32 px-6 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-          <div>
-            <span className="text-xs font-bold tracking-[0.3em] uppercase text-emerald-500 mb-4 block">Selected Works</span>
-            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase">Catalogue</h2>
-          </div>
-          <p className="max-w-md text-zinc-400 text-lg">
-            A curated selection of projects focusing on visual storytelling and brand architecture.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {PROJECTS.map((project, index) => (
+      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden px-6">
+        {/* Subtle Grid Background */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+             style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-8">
             <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              onClick={() => setSelectedProject(project)}
-              className="group cursor-none relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <img 
-                src={project.url} 
-                alt={project.title}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
-                <span className="text-xs font-bold tracking-widest uppercase text-emerald-500 mb-2">{project.category}</span>
-                <h3 className="text-2xl font-bold tracking-tight">{project.title}</h3>
-                <div className="mt-4 flex items-center gap-2 text-sm font-medium opacity-70">
-                  View Project <ArrowRight size={16} />
-                </div>
+              <h1 className="text-5xl md:text-[7vw] font-black leading-[0.9] tracking-tighter uppercase mb-8">
+                Design that helps <br />
+                brands become <br />
+                <span className="text-blue-600">impossible</span> <br />
+                to ignore.
+              </h1>
+              <p className="max-w-xl text-lg md:text-xl text-zinc-400 mb-10 leading-relaxed font-medium">
+                Graphic designer with 8+ years shaping brand identities, visual systems, and communication that actually works.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <a href="#work" className="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-sm font-bold hover:bg-blue-600 hover:text-white transition-all duration-300">
+                  View Selected Work
+                  <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
+                </a>
+                <button className="flex items-center gap-3 px-8 py-4 rounded-sm border border-white/10 font-bold hover:bg-white/5 transition-colors">
+                  Download Portfolio <Download size={18} />
+                </button>
               </div>
             </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-32 px-6 bg-zinc-950">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div className="relative aspect-square rounded-3xl overflow-hidden">
-            <img 
-              src="https://picsum.photos/seed/designer/800/800" 
-              alt="Designer" 
-              referrerPolicy="no-referrer"
-              className="w-full h-full object-cover grayscale"
-            />
-            <div className="absolute inset-0 border-[20px] border-emerald-500/20 m-8 rounded-2xl" />
           </div>
           
-          <div>
-            <span className="text-xs font-bold tracking-[0.3em] uppercase text-emerald-500 mb-6 block">The Visionary</span>
-            <h2 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase mb-8">
-              Pushing the <br />
-              Boundaries of <br />
-              Visual Art
-            </h2>
-            <div className="space-y-6 text-zinc-400 text-lg leading-relaxed">
-              <p>
-                With over a decade of experience in the creative industry, I've collaborated with global brands to redefine their visual presence. My approach combines technical precision with artistic intuition.
-              </p>
-              <p>
-                I believe that great design isn't just about aesthetics; it's about creating a language that resonates with the audience on a visceral level.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-8 mt-12">
-              <div>
-                <h4 className="text-white font-bold mb-2">Services</h4>
-                <ul className="text-sm space-y-1 opacity-60">
-                  <li>Brand Identity</li>
-                  <li>Editorial Design</li>
-                  <li>Typography</li>
-                  <li>Digital Strategy</li>
-                </ul>
+          <div className="hidden lg:block lg:col-span-4 relative">
+            <motion.div 
+              animate={{ 
+                y: [0, -20, 0],
+                rotate: [0, 5, 0]
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="w-full aspect-square border border-white/5 rounded-3xl flex items-center justify-center p-12 bg-zinc-900/50 backdrop-blur-sm"
+            >
+              <div className="w-full h-full border-2 border-blue-600/20 rounded-2xl flex items-center justify-center relative">
+                <div className="absolute top-0 left-0 w-4 h-4 bg-blue-600 -translate-x-1/2 -translate-y-1/2" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 bg-blue-600 translate-x-1/2 translate-y-1/2" />
+                <span className="text-8xl font-black text-white/10">B.</span>
               </div>
-              <div>
-                <h4 className="text-white font-bold mb-2">Recognition</h4>
-                <ul className="text-sm space-y-1 opacity-60">
-                  <li>AIGA Design Award</li>
-                  <li>Behance Featured</li>
-                  <li>Adobe Creative Jam</li>
-                </ul>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-32 px-6 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h2 className="text-6xl md:text-9xl font-bold tracking-tighter uppercase mb-12">
-            Let's <span className="text-emerald-500 italic">Create</span>
-          </h2>
-          <p className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-16">
-            Have a project in mind? Let's collaborate and build something extraordinary.
-          </p>
-          
-          <a 
-            href="mailto:hello@vanguard.design" 
-            className="inline-flex items-center gap-4 text-3xl md:text-5xl font-bold hover:text-emerald-500 transition-colors border-b-4 border-white/10 pb-4"
-          >
-            hello@vanguard.design
-            <ArrowRight size={40} />
-          </a>
+      {/* Featured Work */}
+      <section id="work" className="py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-20">
+            <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-blue-600 mb-4 block">The Proof</span>
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase">Selected Work</h2>
+          </div>
 
-          <div className="flex justify-center gap-8 mt-24">
-            {[Instagram, Twitter, Linkedin, Mail].map((Icon, i) => (
-              <a key={i} href="#" className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
-                <Icon size={24} />
-              </a>
+          <div className="space-y-32">
+            {FEATURED_PROJECTS.map((project, index) => (
+              <motion.div 
+                key={project.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
+              >
+                <div className={`lg:col-span-7 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                  <div className="group relative aspect-[16/10] overflow-hidden bg-zinc-900 rounded-lg">
+                    <img 
+                      src={project.url} 
+                      alt={project.title}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </div>
+                <div className={`lg:col-span-5 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                  <span className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2 block">Project {index + 1}</span>
+                  <h3 className="text-4xl md:text-5xl font-black tracking-tighter uppercase mb-6">{project.title} — {project.subtitle}</h3>
+                  <p className="text-zinc-400 text-lg mb-8 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-3 mb-8">
+                    {project.tags.map(tag => (
+                      <span key={tag} className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 border border-white/10 rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <button className="flex items-center gap-2 font-bold text-sm hover:text-blue-500 transition-colors">
+                    View Case Study <ArrowRight size={16} />
+                  </button>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-white/5">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-bold tracking-widest uppercase opacity-40">
-          <p>© 2024 VANGUARD DESIGN STUDIO</p>
-          <div className="flex gap-8">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+      {/* Approach Section */}
+      <section id="approach" className="py-32 px-6 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-24">
+            <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-blue-600 mb-4 block">Your Edge</span>
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase">My Approach to Design</h2>
           </div>
-          <p>Built with Passion</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              { icon: Search, title: 'Discover', desc: 'Understanding the business, audience, and problem.' },
+              { icon: Layers, title: 'Structure', desc: 'Building a visual system that communicates clearly.' },
+              { icon: PenTool, title: 'Design', desc: 'Crafting visuals that make the brand recognizable everywhere.' }
+            ].map((item, i) => (
+              <div key={i} className="p-12 border border-white/5 bg-zinc-900/30 rounded-2xl hover:border-blue-600/50 transition-colors group">
+                <item.icon className="mb-8 text-blue-600 group-hover:scale-110 transition-transform" size={40} />
+                <h3 className="text-2xl font-black uppercase mb-4">{item.title}</h3>
+                <p className="text-zinc-400 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Design Thinking Snapshot */}
+          <div className="mt-32 p-12 border border-white/5 rounded-3xl bg-gradient-to-br from-zinc-900 to-black">
+            <div className="text-center mb-16">
+              <h3 className="text-3xl font-black uppercase">Design Thinking Snapshot</h3>
+            </div>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-24 h-24 rounded-full border-2 border-white/10 flex items-center justify-center text-xl font-bold">The Pivot</div>
+                <span className="text-[10px] font-bold uppercase tracking-widest opacity-40">Strategy</span>
+              </div>
+              <ArrowRight className="hidden md:block text-blue-600" size={32} />
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-32 h-32 rounded-full border-2 border-blue-600 flex items-center justify-center text-2xl font-black">Brand</div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600">Identity</span>
+              </div>
+              <ArrowRight className="hidden md:block text-blue-600" size={32} />
+              <div className="flex flex-col items-center gap-4">
+                <div className="w-24 h-24 rounded-full border-2 border-white/10 flex items-center justify-center text-xl font-bold">Comm.</div>
+                <span className="text-[10px] font-bold uppercase tracking-widest opacity-40">Visuals</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Capabilities & Tools */}
+      <section className="py-32 px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24">
+          <div>
+            <h2 className="text-4xl font-black uppercase mb-12">Design Capabilities</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {CAPABILITIES.map(item => (
+                <div key={item} className="flex items-center gap-4 p-6 border border-white/5 rounded-lg hover:bg-white/5 transition-colors">
+                  <div className="w-2 h-2 bg-blue-600 rounded-full" />
+                  <span className="font-bold text-sm uppercase tracking-wider">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div>
+            <h2 className="text-4xl font-black uppercase mb-12">Tools of the Trade</h2>
+            <div className="flex flex-wrap gap-4">
+              {TOOLS.map(tool => (
+                <span key={tool} className="px-6 py-3 bg-zinc-900 border border-white/10 rounded-sm text-xs font-bold uppercase tracking-widest hover:border-blue-600 transition-colors">
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Picture Catalogue */}
+      <section className="py-32 px-6 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-16">
+            <h2 className="text-4xl font-black uppercase">More Projects</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {CATALOGUE.map((item) => (
+              <motion.div 
+                key={item.id}
+                whileHover={{ y: -5 }}
+                className="aspect-square relative group overflow-hidden rounded-lg cursor-pointer"
+                onClick={() => setSelectedProject(item)}
+              >
+                <img 
+                  src={item.url} 
+                  alt={item.title} 
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                />
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <span className="text-[10px] font-bold uppercase tracking-widest">View</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Background */}
+      <section id="about" className="py-32 px-6 border-y border-white/5">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-blue-600 mb-8 block">Quick Background</span>
+          <p className="text-2xl md:text-3xl font-medium leading-relaxed italic">
+            "I started in graphic design over eight years ago and later moved deeper into brand development. My focus today is helping organizations communicate their value through clear, structured visual identities."
+          </p>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-32 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-12">
+            Let's build <br />
+            something <span className="text-blue-600">meaningful.</span>
+          </h2>
+          
+          <div className="flex flex-col items-center gap-8 mb-20">
+            <a 
+              href="mailto:Oluwagbogoidowu@gmail.com" 
+              className="text-2xl md:text-4xl font-bold hover:text-blue-500 transition-colors"
+            >
+              Oluwagbogoidowu@gmail.com
+            </a>
+            <div className="flex gap-6">
+              <a href="https://www.linkedin.com/in/emmanuel-idowu-744969164?" target="_blank" className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-blue-500 transition-colors">
+                <Linkedin size={18} /> LinkedIn
+              </a>
+              <a href="https://wa.me/+2348132531112" target="_blank" className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-blue-500 transition-colors">
+                <MessageSquare size={18} /> WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6">
+            <button className="bg-white text-black px-10 py-5 rounded-sm font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all">
+              Download CV
+            </button>
+            <a href="https://wa.me/+2348132531112" className="border border-white/10 px-10 py-5 rounded-sm font-black uppercase tracking-widest hover:bg-white/5 transition-all">
+              Start a Conversation
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-6 border-t border-white/5 bg-black">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-xl font-black tracking-tighter">EMMANUEL IDOWU.</div>
+          <div className="text-[10px] font-bold tracking-[0.3em] uppercase opacity-30">
+            © 2024 ALL RIGHTS RESERVED
+          </div>
+          <div className="flex gap-8 text-[10px] font-bold tracking-widest uppercase opacity-30">
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+            <a href="#">Behance</a>
+          </div>
         </div>
       </footer>
 
@@ -303,40 +439,19 @@ export default function App() {
               onClick={() => setSelectedProject(null)}
               className="absolute top-8 right-8 p-4 bg-white/10 hover:bg-white/20 rounded-full transition-colors z-10"
             >
-              <X size={32} />
+              <X size={24} />
             </button>
 
-            <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <motion.div 
-                layoutId={selectedProject.id}
-                className="aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-900"
-              >
-                <img 
-                  src={selectedProject.url} 
-                  alt={selectedProject.title}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              
-              <div className="space-y-8">
-                <div>
-                  <span className="text-emerald-500 font-bold tracking-widest uppercase text-sm">{selectedProject.category} — {selectedProject.year}</span>
-                  <h2 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase mt-4">{selectedProject.title}</h2>
-                </div>
-                <p className="text-zinc-400 text-lg leading-relaxed">
-                  This project explores the intersection of minimalist aesthetics and functional design. Each element was meticulously crafted to ensure a cohesive brand experience across all touchpoints.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  {['Branding', 'Layout', 'Color Theory', 'Art Direction'].map(tag => (
-                    <span key={tag} className="px-4 py-2 bg-white/5 rounded-full text-xs font-bold tracking-widest uppercase">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <button className="flex items-center gap-3 bg-emerald-500 text-black px-8 py-4 rounded-full font-bold hover:bg-white transition-all">
-                  View Case Study <ExternalLink size={20} />
-                </button>
+            <div className="max-w-4xl w-full">
+              <img 
+                src={selectedProject.url} 
+                alt={selectedProject.title}
+                referrerPolicy="no-referrer"
+                className="w-full h-auto rounded-lg shadow-2xl"
+              />
+              <div className="mt-8 text-center">
+                <h3 className="text-3xl font-black uppercase mb-2">{selectedProject.title}</h3>
+                <p className="text-zinc-400 uppercase tracking-widest text-xs font-bold">{selectedProject.category || selectedProject.subtitle}</p>
               </div>
             </div>
           </motion.div>
@@ -344,14 +459,12 @@ export default function App() {
       </AnimatePresence>
 
       <style>{`
-        .border-text {
-          -webkit-text-stroke: 1px rgba(255,255,255,0.3);
-        }
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
         body {
           font-family: 'Inter', sans-serif;
-          cursor: crosshair;
+          background-color: #0A0A0A;
         }
+        .font-black { font-weight: 900; }
       `}</style>
     </div>
   );
