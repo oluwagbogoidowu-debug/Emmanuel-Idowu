@@ -342,22 +342,29 @@ export default function App() {
           <div className="mb-16">
             <h2 className="text-4xl font-black uppercase">More Projects</h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {CATALOGUE.map((item) => (
+          <div className="columns-2 md:columns-3 lg:columns-4 gap-6">
+            {CATALOGUE.map((item, index) => (
               <motion.div 
                 key={item.id}
                 whileHover={{ y: -5 }}
-                className="aspect-square relative group overflow-hidden rounded-lg cursor-pointer"
+                className="break-inside-avoid relative group overflow-hidden rounded-xl cursor-pointer mb-6"
                 onClick={() => setSelectedProject(item)}
               >
                 <img 
                   src={item.url} 
                   alt={item.title} 
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-all duration-500"
+                  className={`w-full h-auto object-cover transition-all duration-500 block ${
+                    index % 4 === 0 ? 'aspect-[4/5]' : 
+                    index % 4 === 1 ? 'aspect-[3/2]' : 
+                    index % 4 === 2 ? 'aspect-square' : 
+                    'aspect-[2/3]'
+                  }`}
                 />
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="text-[10px] font-bold uppercase tracking-widest">View</span>
+                <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] mb-2 text-blue-500">{item.category}</span>
+                  <h4 className="text-sm font-black uppercase tracking-tighter">{item.title}</h4>
+                  <div className="mt-4 w-8 h-px bg-white/20" />
                 </div>
               </motion.div>
             ))}
