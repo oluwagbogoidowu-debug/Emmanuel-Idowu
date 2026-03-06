@@ -61,8 +61,8 @@ const FEATURED_PROJECTS = [
   {
     id: IMAGE_IDS[1],
     title: 'Vectorise',
-    subtitle: 'Visual System',
-    description: 'Developed a dynamic visual system for a tech-driven platform to stand out in a crowded market through precision and clarity.',
+    subtitle: 'Product Interface & Visual System',
+    description: 'Problem: A tech platform needed a clean interface and visual structure to help users navigate complex information easily. Solution: Created a UI structure using consistent typography, spacing systems, and clear visual hierarchy. Result: A structured interface that improves clarity and usability across the platform.',
     tags: ['Visual System', 'UI Design', 'Typography'],
     url: getImageUrl(IMAGE_IDS[1])
   },
@@ -200,7 +200,7 @@ export default function App() {
                 to ignore.
               </h1>
               <p className="max-w-xl text-lg md:text-xl text-zinc-400 mb-10 leading-relaxed font-medium">
-                Graphic designer with 8+ years shaping brand identities, visual systems, and communication that actually works.
+                Graphic, Brand & UI Designer with 8+ years designing brand systems and digital interfaces.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#work" className="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-sm font-bold hover:bg-blue-600 hover:text-white transition-all duration-300">
