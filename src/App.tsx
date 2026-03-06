@@ -19,14 +19,19 @@ import {
   Search,
   Layers,
   PenTool,
-  Smartphone
+  Smartphone,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 // Google Drive Image IDs provided by the user
 const IMAGE_IDS = [
-  '1OT8BEuz5ZhTFT64m-T_RtPtvX7Dh0-n_',
-  '1ekhUWtmR4i4QsaDW3FwmolE05dAE5EA0',
-  '1Ip9LeUwwI4PFvraYfO-ZXOBtz7WzuNwy',
+  '1oaglk7ZnnSn6nao3bgjdyioVsgxSCY85', // New Project 1
+  '1Hwm439Vme0VJQ9iA3KWI0dl9EbBW2CQH', // New Project 2
+  '1FXamc43tsiuBicprGbmNoTFrsw6OavNH', // New Project 3
+  '1OT8BEuz5ZhTFT64m-T_RtPtvX7Dh0-n_', // Old Project 1
+  '1ekhUWtmR4i4QsaDW3FwmolE05dAE5EA0', // Old Project 2
+  '1Ip9LeUwwI4PFvraYfO-ZXOBtz7WzuNwy', // Old Project 3
   '1Dcik_guASt5jyoTmuBcr7WYFmOSaabRe',
   '1hc8z33L_FXsuvu5_iHcYrXKLbkofxD9R',
   '1rL-Oe4UBmgi_l2EG4_tgtnKCS5b7wyNv',
@@ -44,26 +49,26 @@ const getImageUrl = (id: string) => `https://lh3.googleusercontent.com/d/${id}`;
 const FEATURED_PROJECTS = [
   {
     id: IMAGE_IDS[0],
-    title: 'Rightware',
-    subtitle: 'Brand Identity',
-    description: 'Helped an emerging ecommerce brand build a recognizable visual identity that strengthened trust and customer loyalty.',
-    tags: ['Logo', 'Brand Colors', 'Packaging', 'Social Graphics'],
+    title: 'Afriradar',
+    subtitle: 'Carousel Design',
+    description: 'A media publishing company dedicated to telling the most compelling stories of tech news and digital updates across the African continent.',
+    tags: ['Carousel Design', 'Social Media', 'Tech News', 'Africa'],
     url: getImageUrl(IMAGE_IDS[0])
   },
   {
     id: IMAGE_IDS[1],
     title: 'Vectorise',
-    subtitle: 'Coaching Tech Startup',
-    description: 'Developed a dynamic visual system for a tech-driven coaching platform to stand out in a crowded market.',
+    subtitle: 'Visual System',
+    description: 'Developed a dynamic visual system for a tech-driven platform to stand out in a crowded market through precision and clarity.',
     tags: ['Visual System', 'UI Design', 'Typography'],
     url: getImageUrl(IMAGE_IDS[1])
   },
   {
     id: IMAGE_IDS[2],
-    title: 'Servifix',
-    subtitle: 'Product Branding',
-    description: 'Crafted a robust branding strategy for a service-oriented product, focusing on clarity and reliability.',
-    tags: ['Branding', 'Iconography', 'Marketing'],
+    title: 'Structura',
+    subtitle: 'Corporate Identity',
+    description: 'A premium construction firm focused on sustainable urban development and high-end residential projects, requiring a robust and reliable brand presence.',
+    tags: ['Branding', 'Iconography', 'Marketing', 'Construction'],
     url: getImageUrl(IMAGE_IDS[2])
   }
 ];
@@ -89,6 +94,22 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
   const [scrolled, setScrolled] = useState(false);
+
+  const handleNext = () => {
+    if (!selectedProject) return;
+    const currentIndex = CATALOGUE.findIndex(item => item.id === selectedProject.id);
+    if (currentIndex === -1) return;
+    const nextIndex = (currentIndex + 1) % CATALOGUE.length;
+    setSelectedProject(CATALOGUE[nextIndex]);
+  };
+
+  const handlePrev = () => {
+    if (!selectedProject) return;
+    const currentIndex = CATALOGUE.findIndex(item => item.id === selectedProject.id);
+    if (currentIndex === -1) return;
+    const prevIndex = (currentIndex - 1 + CATALOGUE.length) % CATALOGUE.length;
+    setSelectedProject(CATALOGUE[prevIndex]);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -251,9 +272,6 @@ export default function App() {
                       </span>
                     ))}
                   </div>
-                  <button className="flex items-center gap-2 font-bold text-sm hover:text-blue-500 transition-colors">
-                    View Case Study <ArrowRight size={16} />
-                  </button>
                 </div>
               </motion.div>
             ))}
@@ -434,7 +452,7 @@ export default function App() {
       </footer>
 
       {/* Project Modal */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {selectedProject && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -449,18 +467,44 @@ export default function App() {
               <X size={24} />
             </button>
 
-            <div className="max-w-4xl w-full">
+            {/* Navigation Buttons */}
+            <button 
+              onClick={(e) => { e.stopPropagation(); handlePrev(); }}
+              className="absolute left-4 md:left-8 p-4 bg-white/5 hover:bg-white/20 rounded-full transition-colors z-10 hidden md:block"
+            >
+              <ChevronLeft size={32} />
+            </button>
+            <button 
+              onClick={(e) => { e.stopPropagation(); handleNext(); }}
+              className="absolute right-4 md:right-8 p-4 bg-white/5 hover:bg-white/20 rounded-full transition-colors z-10 hidden md:block"
+            >
+              <ChevronRight size={32} />
+            </button>
+
+            <motion.div 
+              key={selectedProject.id}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              onDragEnd={(_, info) => {
+                if (info.offset.x < -100) handleNext();
+                if (info.offset.x > 100) handlePrev();
+              }}
+              className="max-w-4xl w-full cursor-grab active:cursor-grabbing"
+            >
               <img 
                 src={selectedProject.url} 
                 alt={selectedProject.title}
                 referrerPolicy="no-referrer"
-                className="w-full h-auto rounded-lg shadow-2xl"
+                className="w-full h-auto rounded-lg shadow-2xl pointer-events-none"
               />
               <div className="mt-8 text-center">
                 <h3 className="text-3xl font-black uppercase mb-2">{selectedProject.title}</h3>
                 <p className="text-zinc-400 uppercase tracking-widest text-xs font-bold">{selectedProject.category || selectedProject.subtitle}</p>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
