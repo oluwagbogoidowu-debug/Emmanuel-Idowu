@@ -31,7 +31,7 @@ const IMAGE_IDS = [
   '1OT8BEuz5ZhTFT64m-T_RtPtvX7Dh0-n_', // Old Project 1
   '1ekhUWtmR4i4QsaDW3FwmolE05dAE5EA0', // Old Project 2
   '1Ip9LeUwwI4PFvraYfO-ZXOBtz7WzuNwy', // Old Project 3
-  '1qYdrmwFKChGuSNSSNR4w3f-6kRruthtP',
+  '1p8rZoYneDhX9p3_OS57R60B4WD4Kuf9-',
   '1hc8z33L_FXsuvu5_iHcYrXKLbkofxD9R',
   '1rL-Oe4UBmgi_l2EG4_tgtnKCS5b7wyNv',
   '1j25QQj3pxZlgoihrkJe3-TJQlemhZ7Ta',
@@ -42,9 +42,12 @@ const IMAGE_IDS = [
   '1LRWtwTjDZd6qs7fSq7ugo02Dg83lJd7E',
   '18_2Dl-ixGzJQX8MYyGCNM1Cu4nFgySW8',
   '1RgkpDXlenL4rTFAjHOSSug0y_Uo0VeDd',
+  '1di31zZMXcTpqa15nqDkimS9PR1zRo3bl',
+  '1m-IYiA6qA2sKUEO82PCC4AMdL0_832o1',
   '16rUANTaUTrhY5EWVHQC6ULBkCjEB_XoW',
   '1nCMwk96LW9wMmt5R8kRtkM229MBYlu8V',
   '1c-HHmkvply73kvAeYhpwWEGWbh8fq2PF',
+  '1WJdQeRjK0wCNoJWENyG36O7BU52YcKwe',
   '1t1OX5khpFnH6Q-s2H2inlVy21Mn4uBlL',
   '1W1-gZktUnHyoJgVknWM2sDuA5W-k5q2u'
 ];
