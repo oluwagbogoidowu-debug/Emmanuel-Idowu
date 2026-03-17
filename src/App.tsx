@@ -31,7 +31,7 @@ const IMAGE_IDS = [
   '1OT8BEuz5ZhTFT64m-T_RtPtvX7Dh0-n_', // Old Project 1
   '1ekhUWtmR4i4QsaDW3FwmolE05dAE5EA0', // Old Project 2
   '1Ip9LeUwwI4PFvraYfO-ZXOBtz7WzuNwy', // Old Project 3
-  '1Dcik_guASt5jyoTmuBcr7WYFmOSaabRe',
+  '1qYdrmwFKChGuSNSSNR4w3f-6kRruthtP',
   '1hc8z33L_FXsuvu5_iHcYrXKLbkofxD9R',
   '1rL-Oe4UBmgi_l2EG4_tgtnKCS5b7wyNv',
   '1j25QQj3pxZlgoihrkJe3-TJQlemhZ7Ta',
