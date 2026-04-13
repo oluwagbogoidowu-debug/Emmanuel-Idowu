@@ -27,7 +27,7 @@ import {
 const IMAGE_IDS = [
   '1oaglk7ZnnSn6nao3bgjdyioVsgxSCY85', // New Project 1
   '1p8rZoYneDhX9p3_OS57R60B4WD4Kuf9-', // New Project 2
-  '1FXamc43tsiuBicprGbmNoTFrsw6OavNH', // New Project 1
+  '1MKjgKre20tE_AI59yROtfNNCMZEkV3h0', // New Project 1
   '1Oofcu-8Gr4SToeZWHhOj6lJAxFHOC7ZA', // Old Project 1
   '1mTN6v5N2Th0C5f8LWpMTPX6hS1cs6tR1', // Old Project 2
   '18iuKDoqJgoi2Qf-oDnMH_4UDxyqyVz9K',
@@ -40,18 +40,12 @@ const IMAGE_IDS = [
   '1GxD6y0hEVEZpTYxMKbvXG_EM7OrrYlv_',
   '1wRmzAJoUs4UjlwI2io7ErrpgDmLQcTWk',
   '1LRWtwTjDZd6qs7fSq7ugo02Dg83lJd7E',
-  '1aIGjayMwJhRNBUX2vcn3AauAnZQ7q2fR',
   '1RgkpDXlenL4rTFAjHOSSug0y_Uo0VeDd',
-  '1MKjgKre20tE_AI59yROtfNNCMZEkV3h0',
   '1_ol1xYyrl5U9GJwthTLXm6g-THiIA4_j',
   '1zbQvw5PJXB4BiqbsOArqvYj1AI-fCIx-',
-  '1di31zZMXcTpqa15nqDkimS9PR1zRo3bl',
   '1m-IYiA6qA2sKUEO82PCC4AMdL0_832o1',
-  '16rUANTaUTrhY5EWVHQC6ULBkCjEB_XoW',
-  '1nCMwk96LW9wMmt5R8kRtkM229MBYlu8V',
-  '1mjw6cwQxPK_xIf4czWAl_8TurVSj21qh',
   '1t1OX5khpFnH6Q-s2H2inlVy21Mn4uBlL',
-  '1W1-gZktUnHyoJgVknWM2sDuA5W-k5q2u',
+  '1W1-gZktUnHyoJgVknWM2sDuA5W-k5q2u'
 ];
 
 const getImageUrl = (id: string) => `https://lh3.googleusercontent.com/d/${id}`;
