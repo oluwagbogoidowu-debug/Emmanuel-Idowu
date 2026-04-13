@@ -196,11 +196,11 @@ export default function App() {
             >
               <h1 className="text-5xl md:text-[7vw] font-black leading-[0.9] tracking-tighter uppercase mb-8">
                 Design that brings <br />
-                clarity to that helps <br />
+                clarity to <br />
                 <span className="text-blue-600">complex ideas</span>
               </h1>
               <p className="max-w-xl text-lg md:text-xl text-zinc-400 mb-10 leading-relaxed font-medium">
-                Graphic, Brand & UI Designer with 8+ years designing brand systems and digital interfaces.
+                Graphic, Brand & UI Designer focused on building clear, structured visual systems.              
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#work" className="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-sm font-bold hover:bg-blue-600 hover:text-white transition-all duration-300">
