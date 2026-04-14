@@ -126,12 +126,20 @@ export default function App() {
       <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-black/90 backdrop-blur-md py-4' : 'bg-transparent py-8'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-xl font-black tracking-tighter"
-          >
-            OLUWAGBOGO IDOWU.
-          </motion.div>
+  initial={{ opacity: 0, x: -20 }}
+  animate={{ opacity: 1, x: 0 }}
+  className="flex items-center gap-3"
+>
+  <img
+    src="/20251218_072429.jpg"
+    alt="Oluwagbogo Idowu"
+    className="w-10 h-10 rounded-full object-cover"
+  />
+
+  <span className="text-xl font-black tracking-tighter">
+    OLUWAGBOGO IDOWU.
+  </span>
+</motion.div>
           
           <div className="hidden md:flex gap-12 text-[10px] font-bold tracking-[0.3em] uppercase opacity-50">
             {['Work', 'Approach', 'About', 'Contact'].map((item) => (
