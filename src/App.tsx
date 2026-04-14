@@ -55,7 +55,15 @@ const FEATURED_PROJECTS = [
     id: IMAGE_IDS[1],
     title: 'Vectorise',
     subtitle: 'Product Interface & Visual System',
-    description: 'A product-focused project designed to simplify how users navigate complex personal growth systems.\n\n**Problem:** Users needed a clearer way to navigate layered personal growth content without confusion.\n**Approach:** Designed a structured UI system using consistent hierarchy, spacing, and visual cues.\n**Outcome:** Created a clean, intuitive interface that improves clarity and user flow across the platform.',
+    description: `
+A product-focused project designed to simplify how users navigate complex personal growth systems.
+
+<br /><br />
+
+<strong>Problem:</strong> Users needed a clearer way to navigate layered personal growth content without confusion.<br />
+<strong>Approach:</strong> Designed a structured UI system using consistent hierarchy, spacing, and visual cues.<br />
+<strong>Outcome:</strong> Created a clean, intuitive interface that improves clarity and user flow across the platform.
+`,
     tags: ['Visual System', 'UI Design', 'Typography'],
     url: getImageUrl(IMAGE_IDS[1])
   },
@@ -63,7 +71,15 @@ const FEATURED_PROJECTS = [
     id: IMAGE_IDS[2],
     title: 'Servifix',
     subtitle: 'Brand Identity',
-    description: 'A brand identity project focused on creating a clear and trustworthy visual presence for a service-based platform.\n\n**Problem:** The brand needed a clear identity that communicates trust and professionalism in a crowded service market.\n**Approach:** Developed a visual system centered on simplicity, consistency, and recognizability across touchpoints.\n**Outcome:** Delivered a cohesive identity that strengthens brand perception and improves visual consistency.',
+    description: `
+A brand identity project focused on creating a clear and trustworthy visual presence for a service-based platform.
+
+<br /><br />
+
+<strong>Problem:</strong> The brand needed a clear identity that communicates trust and professionalism in a crowded service market.<br />
+<strong>Approach:</strong> Developed a visual system centered on simplicity, consistency, and recognizability across touchpoints.<br />
+<strong>Outcome:</strong> Delivered a cohesive identity that strengthens brand perception and improves visual consistency.
+`,
     tags: ['Branding', 'Identity', 'Construction', 'Service'],
     url: getImageUrl(IMAGE_IDS[2])
   },
@@ -71,7 +87,9 @@ const FEATURED_PROJECTS = [
     id: IMAGE_IDS[0],
     title: 'Afriradar',
     subtitle: 'Content & Visual Design',
-    description: 'Designed engaging visual content to communicate fast-paced tech stories clearly and consistently across social media platforms, maintaining a modern and recognizable visual style.',
+    description: `
+Designed engaging visual content to communicate fast-paced tech stories clearly and consistently across social media platforms, maintaining a modern and recognizable visual style.
+`,
     tags: ['Content Design', 'Social Media', 'Tech', 'Africa'],
     url: getImageUrl(IMAGE_IDS[0])
   }
