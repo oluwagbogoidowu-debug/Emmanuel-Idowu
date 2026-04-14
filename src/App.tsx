@@ -71,7 +71,7 @@ const FEATURED_PROJECTS = [
   id: IMAGE_IDS[2],
     title: 'Afriradar',
     subtitle: 'Carousel Design',
-    description: 'A media publishing company dedicated to telling the most compelling stories of tech news and digital updates across the African continent. <br /> Problem: The brand needed a clear identity that communicates trust and professionalism in a crowded service market. Approach: Developed a visual system centered on simplicity, consistency, and recognizability across touchpoints. Outcome: Delivered a cohesive identity that strengthens brand perception and improves visual consistency.',
+    description: 'A media publishing company dedicated to telling the most compelling stories of tech news and digital updates across the African continent. Problem: The brand needed a clear identity that communicates trust and professionalism in a crowded service market. Approach: Developed a visual system centered on simplicity, consistency, and recognizability across touchpoints. Outcome: Delivered a cohesive identity that strengthens brand perception and improves visual consistency.',
     tags: ['Carousel Design', 'Social Media', 'Tech News', 'Africa'],
     url: getImageUrl(IMAGE_IDS[2])
   }
