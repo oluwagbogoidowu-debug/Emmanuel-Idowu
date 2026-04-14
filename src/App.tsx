@@ -234,8 +234,7 @@ export default function App() {
       <section id="work" className="py-32 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="mb-20">
-            <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-blue-600 mb-4 block">The Proof</span>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase">Selected Work</h2>
+         <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase">Selected Work</h2>
           </div>
 
           <div className="space-y-32">
