@@ -51,7 +51,6 @@ const IMAGE_IDS = [
 const getImageUrl = (id: string) => `https://lh3.googleusercontent.com/d/${id}`;
 
 const FEATURED_PROJECTS = [
-  const FEATURED_PROJECTS = [
   {
     id: IMAGE_IDS[0],
     title: 'Afriradar',
