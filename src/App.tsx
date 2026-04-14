@@ -195,12 +195,14 @@ export default function App() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
               <h1 className="text-5xl md:text-[7vw] font-black leading-[0.9] tracking-tighter uppercase mb-8">
+                I create <br />
                 Design that brings <br />
                 clarity to <br />
                 <span className="text-blue-600">complex ideas</span>
               </h1>
               <p className="max-w-xl text-lg md:text-xl text-zinc-400 mb-10 leading-relaxed font-medium">
-                Graphic, Brand & UI Designer focused on building clear, structured visual systems.              
+                I focus on turning unclear ideas into structured visual systems people can understand and act on. 
+               <span className="text-blue-600"> I’m a graphic, brand, and UI designer focused on building clear, structured visual systems. </span>             
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#work" className="group flex items-center gap-3 bg-white text-black px-8 py-4 rounded-sm font-bold hover:bg-blue-600 hover:text-white transition-all duration-300">
