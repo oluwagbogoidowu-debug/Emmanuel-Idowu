@@ -52,27 +52,27 @@ const getImageUrl = (id: string) => `https://lh3.googleusercontent.com/d/${id}`;
 
 const FEATURED_PROJECTS = [
   {
-    id: IMAGE_IDS[0],
-    title: 'Afriradar',
-    subtitle: 'Carousel Design',
-    description: 'A media publishing company dedicated to telling the most compelling stories of tech news and digital updates across the African continent.',
-    tags: ['Carousel Design', 'Social Media', 'Tech News', 'Africa'],
-    url: getImageUrl(IMAGE_IDS[0])
-  },
-  {
-    id: IMAGE_IDS[1],
+    id: IMIMAGE_ID[0],
     title: 'Vectorise',
     subtitle: 'Product Interface & Visual System',
     description: 'Problem: A tech platform needed a clean interface and visual structure to help users navigate complex information easily. Solution: Created a UI structure using consistent typography, spacing systems, and clear visual hierarchy. Result: A structured interface that improves clarity and usability across the platform.',
     tags: ['Visual System', 'UI Design', 'Typography'],
+    url: getImageUrl(IMIMAGE_ID[0])
+  },
+  {
+     id: IMAGE_IDS[1],
+    title: 'Servifix',
+    subtitle: 'Service Branding',
+    description: 'A brand identity project focused on creating a clear and trustworthy visual presence for a service-based platform.',    
+    tags: ['Branding', 'Identity', 'Construction', 'Service'],
     url: getImageUrl(IMAGE_IDS[1])
   },
   {
-    id: IMAGE_IDS[2],
-    title: 'Servifix',
-    subtitle: 'Service Branding',
-    description: 'A comprehensive branding and visual identity system for a construction and maintenance firm, emphasizing reliability, precision, and professional service delivery.',
-    tags: ['Branding', 'Identity', 'Construction', 'Service'],
+  id: IMAGE_IDS[2],
+    title: 'Afriradar',
+    subtitle: 'Carousel Design',
+    description: 'A media publishing company dedicated to telling the most compelling stories of tech news and digital updates across the African continent. <br /> Problem: The brand needed a clear identity that communicates trust and professionalism in a crowded service market. Approach: Developed a visual system centered on simplicity, consistency, and recognizability across touchpoints. Outcome: Delivered a cohesive identity that strengthens brand perception and improves visual consistency.',
+    tags: ['Carousel Design', 'Social Media', 'Tech News', 'Africa'],
     url: getImageUrl(IMAGE_IDS[2])
   }
 ];
